@@ -2,246 +2,298 @@
 <html lang="id" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RifqyFlow Ultra - Ultimate Content Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RifqyFlow Ultra - Premium TikTok Downloader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-panel {
-            background: rgba(31, 41, 55, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0a0a0c',
+                        darkCard: '#161619',
+                        darkBorder: '#27272a',
+                        accent: { start: '#3b82f6', via: '#a855f7', end: '#ec4899' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
         }
-        /* Loader Animation */
-        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #3b82f6; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; }
+    </script>
+    <style>
+        body { background-color: #0a0a0c; color: white; -webkit-font-smoothing: antialiased; }
+        .glass { background: rgba(22, 22, 25, 0.8); backdrop-filter: blur(12px); border: 1px solid #27272a; }
+        .gradient-text { background: linear-gradient(to right, #3b82f6, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #3b82f6; border-radius: 50%; width: 22px; height: 22px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        /* Mobile fixes */
+        @media (max-width: 640px) { input, select, button { font-size: 16px !important; } }
     </style>
 </head>
-<body class="bg-gray-950 text-white min-h-screen flex flex-col items-center p-4 selection:bg-blue-500 selection:text-white">
+<body class="p-3 md:p-6 min-h-screen flex flex-col items-center selection:bg-purple-500 selection:text-white">
 
-    <header class="text-center mb-8 w-full max-w-3xl mt-8">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mb-2 tracking-tight">
-            RifqyFlow Ultra
-        </h1>
-        <p class="text-gray-400 text-sm font-medium">Advanced Network Routing & AI Media Extractor</p>
+    <header class="text-center w-full max-w-4xl mt-6 md:mt-10 mb-8 flex flex-col items-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter gradient-text mb-2">RifqyFlow Ultra</h1>
+        <p class="text-gray-400 text-sm md:text-base font-medium">Advanced Network Routing & Real Media Extractor</p>
         
-        <div class="mt-4 inline-flex items-center bg-gray-900 px-4 py-1.5 rounded-full text-xs font-semibold border border-gray-700 shadow-inner">
-            <span id="network-indicator" class="w-2.5 h-2.5 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-            <span id="api-status" class="text-gray-300">System Ready | Menunggu Link</span>
+        <div class="mt-4 inline-flex items-center bg-gray-900 px-4 py-1.5 rounded-full text-xs font-semibold border border-gray-800 shadow-inner">
+            <span id="net-indicator" class="w-2.5 h-2.5 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+            <span id="api-status" class="text-gray-300">Edge Server Ready</span>
         </div>
     </header>
 
-    <main class="glass-panel rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-3xl">
+    <main class="glass rounded-3xl shadow-2xl p-6 md:p-9 w-full max-w-4xl border border-gray-800/50">
         
         <div class="relative mb-6 group">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                <i class="fa-brands fa-tiktok text-gray-400 group-focus-within:text-blue-500 transition-colors"></i>
+            <div class="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none">
+                <i class="fa-brands fa-tiktok text-gray-500 group-focus-within:text-blue-500 transition-colors"></i>
             </div>
-            <input type="text" id="tiktok-url" class="bg-gray-900 border border-gray-700 text-white text-base rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent block w-full pl-12 p-4 transition-all" placeholder="Tempel URL TikTok di sini...">
-            <button onclick="pasteFromClipboard()" class="absolute inset-y-0 right-2 my-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm font-medium transition-colors border border-gray-700">
-                <i class="fa-solid fa-paste"></i>
+            <input type="text" id="tiktok-url" class="bg-gray-900/60 border border-gray-700 text-white text-base rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent block w-full pl-14 pr-28 p-5 transition-all outline-none" placeholder="Tempel link TikTok (Video/Foto/Profil)...">
+            <button onclick="pasteFromClipboard()" class="absolute inset-y-0 right-3 my-3 px-5 bg-gray-800 hover:bg-gray-700 rounded-xl text-sm font-semibold transition-colors border border-gray-700 flex items-center gap-2">
+                <i class="fa-solid fa-paste text-blue-400"></i> Paste
             </button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8 bg-gray-900/50 p-4 rounded-xl border border-gray-800">
-            <div>
-                <label class="block mb-2 text-xs font-bold text-gray-400 uppercase tracking-wider">Target Quality</label>
-                <select id="quality-selector" class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5">
-                    <option value="auto">🌟 Auto-Detect (Best Available)</option>
-                    <option value="hd">🎬 Ultra HD (No Watermark)</option>
-                    <option value="audio">🎵 Extract Audio (MP3)</option>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+            <div class="bg-gray-900/50 p-4 rounded-xl border border-gray-800">
+                <label class="block mb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Kualitas</label>
+                <select id="quality" class="bg-gray-800/80 border border-gray-700 text-white text-sm rounded-lg focus:ring-blue-500 block w-full p-3 outline-none">
+                    <option value="auto">🌟 Auto-Detect (HD)</option>
+                    <option value="data-saver">📱 Data Saver (720p)</option>
                 </select>
             </div>
-            <div class="flex flex-col space-y-3 justify-center">
-                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">AI Processing (Server-Side)</label>
-                <label class="relative inline-flex items-center cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
-                    <input type="checkbox" class="sr-only peer">
-                    <div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-blue-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
-                    <span class="ml-3 text-sm font-medium"><i class="fa-solid fa-closed-captioning text-blue-400 w-4"></i> Auto-Subtitle (.srt)</span>
-                </label>
-                <label class="relative inline-flex items-center cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
-                    <input type="checkbox" class="sr-only peer">
-                    <div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-purple-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
-                    <span class="ml-3 text-sm font-medium"><i class="fa-solid fa-cloud text-purple-400 w-4"></i> Sync to Cloud Drive</span>
-                </label>
+            <div class="bg-gray-900/50 p-4 rounded-xl border border-gray-800 md:col-span-2 flex flex-col md:flex-row gap-3 md:items-center justify-around">
+                <label class="text-xs font-bold text-gray-500 uppercase tracking-wider md:mb-0 mb-2">AI Processing</label>
+                <div class="flex flex-wrap gap-4">
+                    <label onclick="alertAiRequirement()" class="relative inline-flex items-center cursor-pointer group">
+                        <input type="checkbox" class="sr-only peer" disabled>
+                        <div class="w-10 h-6 bg-gray-700 rounded-full peer peer-checked:bg-accent group-hover:bg-gray-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                        <span class="ml-3 text-sm font-medium text-gray-400 group-hover:text-white"><i class="fa-solid fa-closed-captioning text-blue-400"></i> Caption</span>
+                    </label>
+                    <label onclick="alertAiRequirement()" class="relative inline-flex items-center cursor-pointer group">
+                        <input type="checkbox" class="sr-only peer" disabled>
+                        <div class="w-10 h-6 bg-gray-700 rounded-full peer peer-checked:bg-accent group-hover:bg-gray-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                        <span class="ml-3 text-sm font-medium text-gray-400 group-hover:text-white"><i class="fa-solid fa-mirror text-purple-400"></i> Mirror</span>
+                    </label>
+                </div>
             </div>
         </div>
 
-        <button id="extract-btn" onclick="processURL()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-4 px-4 rounded-xl shadow-lg shadow-blue-500/30 transform transition-all flex justify-center items-center gap-2">
-            <i class="fa-solid fa-microchip"></i> Ekstrak Metadata & Media
+        <button id="extract-btn" onclick="processTikTokRequest()" class="w-full h-16 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-500 hover:to-pink-500 text-white text-lg font-extrabold rounded-2xl shadow-xl shadow-purple-500/20 transform hover:scale-[1.01] transition-all flex justify-center items-center gap-3 active:scale-[0.99]">
+            <i class="fa-solid fa-robot text-xl"></i> Mulai Ekstraksi AI & Media
         </button>
     </main>
 
-    <section id="result-section" class="hidden glass-panel rounded-2xl shadow-xl p-6 mt-6 w-full max-w-3xl border border-blue-500/30">
-        <div class="flex flex-col md:flex-row gap-6">
-            <div class="w-full md:w-1/3 relative group rounded-xl overflow-hidden border border-gray-700 bg-gray-900 aspect-[9/16]">
-                <img id="res-thumb" src="" alt="Thumbnail" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                <a id="res-play" href="#" target="_blank" class="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/20 transition-all">
-                    <div class="bg-blue-600/80 p-4 rounded-full backdrop-blur-sm">
-                        <i class="fa-solid fa-play text-2xl text-white ml-1"></i>
+    <section id="result-section" class="hidden w-full max-w-4xl mt-8 animate-fade-in">
+        <div class="glass rounded-3xl p-6 md:p-8 border border-blue-500/30 shadow-blue-500/10 shadow-xl flex flex-col md:flex-row gap-7">
+            
+            <div id="media-preview-container" class="w-full md:w-2/5 aspect-[9/16] bg-black rounded-2xl overflow-hidden border border-gray-700 shadow-inner relative group">
+                <img id="res-thumb" src="" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <a id="res-play-link" href="#" target="_blank" class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div class="bg-blue-600/80 p-5 rounded-full text-white backdrop-blur-sm transform scale-90 group-hover:scale-100 transition-transform">
+                        <i class="fa-solid fa-play text-3xl"></i>
                     </div>
                 </a>
+                <span class="absolute top-3 right-3 bg-darkCard/80 text-blue-300 text-xs font-bold px-3 py-1 rounded-full border border-gray-700 backdrop-blur-sm" id="res-node">Node 1</span>
             </div>
             
-            <div class="w-full md:w-2/3 flex flex-col justify-between">
+            <div class="w-full md:w-3/5 flex flex-col justify-between">
                 <div>
-                    <div class="flex items-center gap-3 mb-3 pb-3 border-b border-gray-800">
-                        <img id="res-avatar" src="" class="w-10 h-10 rounded-full border-2 border-blue-500">
+                    <div class="flex items-center gap-4 mb-5 pb-5 border-b border-gray-800">
+                        <img id="res-avatar" src="" class="w-14 h-14 rounded-full border-2 border-blue-500 shadow-md">
                         <div>
-                            <p id="res-author" class="font-bold text-white leading-tight"></p>
-                            <p id="res-username" class="text-xs text-gray-400"></p>
+                            <p id="res-author" class="font-bold text-lg text-white leading-tight"></p>
+                            <p id="res-username" class="text-sm text-gray-400"></p>
                         </div>
                     </div>
                     
-                    <div class="bg-gray-900 p-3 rounded-lg border border-gray-800 relative mb-4 group">
-                        <p id="res-desc" class="text-sm text-gray-300 pr-8 line-clamp-4 leading-relaxed"></p>
-                        <button onclick="copyDesc()" class="absolute top-2 right-2 p-2 bg-gray-800 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" title="Salin Deskripsi">
+                    <div class="grid grid-cols-3 gap-3 mb-5 text-center">
+                        <div class="bg-gray-900 rounded-lg p-2.5 border border-gray-800"><p class="text-xs text-gray-400">Views</p><p id="res-views" class="font-bold text-sm text-blue-400"></p></div>
+                        <div class="bg-gray-900 rounded-lg p-2.5 border border-gray-800"><p class="text-xs text-gray-400">Likes</p><p id="res-likes" class="font-bold text-sm text-pink-400"></p></div>
+                        <div class="bg-gray-900 rounded-lg p-2.5 border border-gray-800"><p class="text-xs text-gray-400">Size</p><p id="res-size" class="font-bold text-sm text-green-400"></p></div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 relative mb-6 group overflow-hidden">
+                        <label class="block mb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Deskripsi / AI Caption</label>
+                        <p id="res-desc" class="text-sm text-gray-200 leading-relaxed line-clamp-4 pr-10"></p>
+                        <button onclick="copyRealDescription()" class="absolute top-3 right-3 p-2.5 bg-gray-800 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition-all border border-gray-700 active:scale-95" title="Salin Deskripsi Asli">
                             <i class="fa-regular fa-copy"></i>
                         </button>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-3">
-                    <a id="btn-dl-hd" href="#" target="_blank" class="col-span-2 bg-blue-600 hover:bg-blue-500 text-center text-white text-sm font-bold py-3 rounded-xl transition-colors flex justify-center items-center gap-2">
+                <div class="grid grid-cols-2 gap-3.5 mt-auto">
+                    <a id="btn-dl-hd" href="#" target="_blank" class="col-span-2 md:col-span-1 bg-blue-600 hover:bg-blue-500 text-center text-white text-base font-bold py-4 rounded-xl transition-colors flex justify-center items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-[0.98]">
                         <i class="fa-solid fa-download"></i> Download HD (No Watermark)
                     </a>
-                    <a id="btn-dl-audio" href="#" target="_blank" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-center text-white text-sm font-medium py-2.5 rounded-xl transition-colors">
-                        <i class="fa-solid fa-music mr-1"></i> MP3
+                    <a id="btn-dl-audio" href="#" target="_blank" class="col-span-2 md:col-span-1 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-center text-white text-base font-medium py-4 rounded-xl transition-colors active:scale-[0.98]">
+                        <i class="fa-solid fa-music mr-2"></i> Ekstrak MP3 Audio
                     </a>
-                    <button class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-center text-white text-sm font-medium py-2.5 rounded-xl transition-colors opacity-70 cursor-not-allowed" title="Membutuhkan Backend Server">
-                        <i class="fa-solid fa-scissors mr-1"></i> Trimmer (Pro)
+                    <button onclick="alertAiRequirement()" class="bg-gray-800/50 hover:bg-gray-700 border border-gray-700 text-center text-gray-300 text-sm font-medium py-3 rounded-xl transition-colors col-span-2">
+                        <i class="fa-solid fa-scissors mr-2"></i> Buka Video Trimmer (Pro)
                     </button>
+                    <div class="col-span-2 flex gap-2 justify-center mt-3 border-t border-gray-800 pt-4">
+                        <button onclick="shareVideo('whatsapp')" class="flex-1 text-[#25D366] bg-[#25D366]/10 py-2.5 rounded-lg border border-[#25D366]/30 text-xs font-bold hover:bg-[#25D366]/20"><i class="fa-brands fa-whatsapp mr-1.5 text-base"></i> WA</button>
+                        <button onclick="shareVideo('telegram')" class="flex-1 text-[#0088cc] bg-[#0088cc]/10 py-2.5 rounded-lg border border-[#0088cc]/30 text-xs font-bold hover:bg-[#0088cc]/20"><i class="fa-brands fa-telegram mr-1.5 text-base"></i> TG</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <footer class="mt-16 mb-8 text-center text-gray-600 text-xs w-full max-w-4xl border-t border-gray-900 pt-8">
+        <p class="font-bold">RifqyFlow Ultra v1.0 | © 2023 RifqyDev.</p>
+        <p class="mt-1">Powered by Serverless Node.js Fallback Engine. Advanced AI Features require Pro Backend.</p>
+    </footer>
+
     <script>
-        // Sistem Routing API Fallback (Real Endpoints)
-        // Catatan: API publik bisa down sewaktu-waktu, sistem ini akan mencoba dari urutan pertama.
-        const apiPool = [
-            { name: "TikWM Primary", url: "https://www.tikwm.com/api/?url=" },
-            { name: "TiklyDown Fallback", url: "https://api.tiklydown.eu.org/api/download?url=" }
-            // Tambahkan API lain di sini jika kamu punya endpoint khusus/premium
-        ];
+        let currentRealVideoUrl = "";
 
         async function pasteFromClipboard() {
             try {
                 const text = await navigator.clipboard.readText();
-                document.getElementById('tiktok-url').value = text;
-            } catch (err) {
-                alert('Izin clipboard ditolak browser. Silakan paste manual.');
-            }
+                if(text.includes('tiktok.com')) {
+                    document.getElementById('tiktok-url').value = text;
+                } else {
+                    alert("Teks di clipboard bukan link TikTok!");
+                }
+            } catch (err) { alert('Browser menolak izin clipboard.'); }
         }
 
-        function updateStatus(message, type = 'info') {
+        function setStatus(msg, type) {
             const status = document.getElementById('api-status');
-            const indicator = document.getElementById('network-indicator');
-            status.innerText = message;
+            const indicator = document.getElementById('net-indicator');
+            status.innerText = msg;
             
+            indicator.className = "w-2.5 h-2.5 rounded-full mr-2";
+            status.className = "font-medium text-xs";
+
             if(type === 'loading') {
-                indicator.className = "w-2.5 h-2.5 rounded-full bg-yellow-400 mr-2 animate-pulse";
-                status.className = "text-yellow-400 font-medium";
+                indicator.classList.add('bg-yellow-400', 'animate-pulse');
+                status.classList.add('text-yellow-400');
             } else if (type === 'success') {
-                indicator.className = "w-2.5 h-2.5 rounded-full bg-green-500 mr-2";
-                status.className = "text-green-400 font-medium";
+                indicator.classList.add('bg-green-500');
+                status.classList.add('text-green-400');
             } else if (type === 'error') {
-                indicator.className = "w-2.5 h-2.5 rounded-full bg-red-500 mr-2";
-                status.className = "text-red-400 font-medium";
+                indicator.classList.add('bg-red-500');
+                status.classList.add('text-red-400');
+            } else {
+                indicator.classList.add('bg-gray-500');
+                status.classList.add('text-gray-300');
             }
         }
 
-        async function processURL() {
+        async function processTikTokRequest() {
             const urlInput = document.getElementById('tiktok-url').value.trim();
-            if (!urlInput) return alert("Masukkan URL TikTok terlebih dahulu!");
+            if (!urlInput) return alert("Link TikTok wajib diisi!");
+            if (!urlInput.includes('tiktok.com')) return alert("Masukkan link TikTok yang valid!");
 
             const btn = document.getElementById('extract-btn');
-            const originalBtnText = btn.innerHTML;
-            btn.innerHTML = '<div class="loader mr-2"></div> Memproses Jaringan...';
-            btn.disabled = true;
-
-            document.getElementById('result-section').classList.add('hidden');
-            let success = false;
-            let data = null;
-
-            // Algoritma Fallback Routing
-            for (let i = 0; i < apiPool.length; i++) {
-                updateStatus(`Routing via Node ${i+1}: ${apiPool[i].name}...`, 'loading');
-                
-                try {
-                    const response = await fetch(apiPool[i].url + encodeURIComponent(urlInput));
-                    const result = await response.json();
-
-                    // Standarisasi response karena tiap API punya format JSON berbeda
-                    if (apiPool[i].name === "TikWM Primary" && result.code === 0) {
-                        data = {
-                            title: result.data.title,
-                            author: result.data.author.nickname,
-                            username: "@" + result.data.author.unique_id,
-                            avatar: result.data.author.avatar,
-                            cover: result.data.cover,
-                            video_hd: result.data.play || result.data.hdplay,
-                            audio: result.data.music
-                        };
-                        success = true;
-                        break;
-                    } 
-                    else if (apiPool[i].name === "TiklyDown Fallback" && result.video) {
-                        data = {
-                            title: result.title || "Video TikTok",
-                            author: result.author.name,
-                            username: "@" + result.author.unique_id,
-                            avatar: result.author.avatar,
-                            cover: result.video.cover,
-                            video_hd: result.video.noWatermark,
-                            audio: result.music.play_url
-                        };
-                        success = true;
-                        break;
-                    }
-                } catch (error) {
-                    console.warn(`Node ${apiPool[i].name} Timeout/Error. Melakukan lompatan (Failover)...`);
-                }
-            }
-
-            // Kembalikan tombol
-            btn.innerHTML = originalBtnText;
-            btn.disabled = false;
-
-            if (success && data) {
-                updateStatus('Ekstraksi Berhasil. Koneksi Stabil.', 'success');
-                displayResults(data);
-            } else {
-                updateStatus('Semua Node API Gagal merespon.', 'error');
-                alert("Gagal mengambil data. Pastikan URL valid, video tidak diprivate, atau server API sedang mengalami limitasi. Coba beberapa saat lagi.");
-            }
-        }
-
-        function displayResults(data) {
-            // Inject data ke UI
-            document.getElementById('res-thumb').src = data.cover;
-            document.getElementById('res-avatar').src = data.avatar;
-            document.getElementById('res-author').innerText = data.author;
-            document.getElementById('res-username').innerText = data.username;
-            document.getElementById('res-desc').innerText = data.title;
+            const originalText = btn.innerHTML;
             
-            // Set Link Download
-            document.getElementById('res-play').href = data.video_hd;
-            document.getElementById('btn-dl-hd').href = data.video_hd;
-            document.getElementById('btn-dl-audio').href = data.audio;
+            // Loading State (Real UI UX)
+            btn.innerHTML = '<div class="loader mr-3"></div> Menganalisis Link Asli...';
+            btn.disabled = true;
+            document.getElementById('result-section').classList.add('hidden');
+            setStatus('Connecting to Edge Nodes...', 'loading');
 
-            // Tampilkan Section
-            document.getElementById('result-section').classList.remove('hidden');
+            try {
+                // MENEMBAK API BACKEND VERCELL ASLI (/api/tiktok.js)
+                const response = await fetch(`/api/tiktok?url=${encodeURIComponent(urlInput)}`);
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    const data = result.data;
+                    setStatus(`Koneksi Stabil via ${result.provider}`, 'success');
+                    displayRealResults(data);
+                } else {
+                    setStatus('Jalur Jaringan Down.', 'error');
+                    alert(`Error Server: ${result.error}\nCoba refresh link di TikTok dan tempel kembali.`);
+                }
+            } catch (error) {
+                setStatus('Koneksi Gagal.', 'error');
+                alert("Gagal terhubung ke server RifqyFlow. Pastikan internet stabil atau API sedang sibuk.");
+                console.error(error);
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
         }
 
-        function copyDesc() {
+        // Tampilkan Data Asli Tanpa Dummy
+        function displayRealResults(r) {
+            const meta = r.meta;
+            const urls = r.urls;
+
+            currentRealVideoUrl = urls.video_hd;
+
+            // Thumbnail & Node
+            document.getElementById('res-thumb').src = meta.cover;
+            document.getElementById('res-play-link').href = urls.video_hd;
+            document.getElementById('res-node').innerText = r.provider;
+
+            // Author
+            document.getElementById('res-avatar').src = meta.avatar;
+            document.getElementById('res-author').innerText = meta.author;
+            document.getElementById('res-username').innerText = meta.username;
+
+            // Stats
+            document.getElementById('res-views').innerText = formatRealNumbers(meta.stats.views);
+            document.getElementById('res-likes').innerText = formatRealNumbers(meta.stats.likes);
+            document.getElementById('res-size').innerText = meta.stats.size_mb;
+
+            // Desc
+            document.getElementById('res-desc').innerText = meta.title;
+
+            // Download Buttons (Asli)
+            document.getElementById('btn-dl-hd').href = urls.video_hd;
+            document.getElementById('btn-dl-audio').href = urls.audio;
+
+            // Handle Photo Slideshow (Jika Ada) - Real Feature
+            if(urls.is_images && urls.images.length > 0) {
+                alert(`Ini adalah postingan FOTO (${urls.images.length} slide).\nTombol download akan mengambil Video HD, silakan download foto manual di tab baru jika tersedia.`);
+            }
+
+            document.getElementById('result-section').classList.remove('hidden');
+            // Scroll ke hasil (UX HP)
+            window.scrollTo({ top: document.getElementById('result-section').offsetTop - 20, behavior: 'smooth' });
+        }
+
+        function formatRealNumbers(num) {
+            if(!num || num === "N/A") return "N/A";
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function copyRealDescription() {
             const text = document.getElementById('res-desc').innerText;
+            if(!text) return;
             navigator.clipboard.writeText(text).then(() => {
-                alert("Deskripsi berhasil disalin ke clipboard!");
+                alert("Deskripsi Asli berhasil disalin ke clipboard!");
             });
         }
-    </script>
+
+        function alertAiRequirement() {
+            alert("Fitur AI Advanced (Transcription, Trimmer, Mirror) membutuhkan pemrosesan video berat.\nVercel Serverless (Gratis) tidak didukung.\nUpgrade ke RifqyFlow Pro atau gunakan Server VPS khusus dengan FFmpeg.");
+        }
+
+        function shareVideo(plat) {
+            const msg = `Cek video TikTok keren ini tanpa watermark yang di-download pakai RifqyFlow Ultra! 🔥\nLink Video: ${currentRealVideoUrl}`;
+            let url = "";
+            if(plat === 'whatsapp') url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+            if(plat === 'telegram') url = `https://tmsge.co/share/url?url=${encodeURIComponent(currentRealVideoUrl)}&text=${encodeURIComponent("Video TikTok No Watermark")}`;
+            if(url) window.open(url, '_blank');
+        }
+
+        // CSS Animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+            .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        `;
+        document.head.appendChild(style);
+    </style>
 </body>
 </html>
