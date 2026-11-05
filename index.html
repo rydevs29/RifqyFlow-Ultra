@@ -18,14 +18,15 @@
 
     <main class="w-full max-w-2xl bg-[#18181b] rounded-2xl border border-[#27272a] p-6 sm:p-10 shadow-2xl">
         
-        <div class="text-center mb-10 relative">
+        <!-- Header -->
+        <div class="text-center mb-8 relative">
             <img id="client-logo" src="" class="hidden mx-auto h-10 mb-5 object-contain">
-            
             <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-2">RifqyFlow Ultra</h1>
             <p class="text-[#a1a1aa] text-sm">Enterprise Media Extractor</p>
         </div>
 
-        <div class="flex flex-col gap-5 mb-8">
+        <!-- Input Section -->
+        <div class="flex flex-col gap-4 mb-6">
             <div class="flex justify-between items-center mb-1">
                 <label class="text-[10px] text-[#71717a] uppercase tracking-wider font-semibold">Universal Media Node</label>
                 <select id="platform-selector" class="bg-[#09090b] border border-[#27272a] rounded-md text-xs px-3 py-1.5 text-[#a1a1aa] focus:outline-none focus:border-[#3f3f46] transition-colors">
@@ -35,60 +36,100 @@
                 </select>
             </div>
 
-            <input type="url" id="url-input" class="w-full bg-[#09090b] border border-[#3f3f46] rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-white transition-colors placeholder-[#71717a]" placeholder="Paste URL (TikTok, YouTube, IG, X, Spotify)...">
+            <input type="url" id="url-input" class="w-full bg-[#09090b] border border-[#3f3f46] rounded-xl px-5 py-4 text-sm focus:outline-none focus:border-white transition-colors placeholder-[#71717a]" placeholder="Paste URL (TikTok, YouTube, IG, X, Threads, FB, Pinterest, Spotify)...">
             
             <button id="fetch-btn" onclick="fetchMedia()" class="w-full bg-white text-black font-semibold rounded-xl py-4 text-sm hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
                 Extract Media
             </button>
-            
-            <div class="flex items-center justify-center gap-2 mt-2">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <p class="text-[11px] text-[#71717a] font-medium tracking-wide">Tor Proxy & DMCA Scanner Active</p>
-            </div>
         </div>
 
-        <button onclick="toggleSettings()" class="w-full flex items-center justify-center gap-2 text-[#71717a] hover:text-white text-xs font-medium transition-colors mb-4 group">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="group-hover:rotate-90 transition-transform duration-300" viewBox="0 0 16 16">
-                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-            </svg>
-            Advanced Client Settings
-        </button>
-
-        <div id="settings-panel" class="hidden bg-[#09090b] border border-[#27272a] rounded-xl p-5 mb-8 space-y-5">
-            <div>
-                <label class="block text-xs font-semibold text-[#a1a1aa] mb-2 uppercase tracking-wide">Client White-Label Logo (Image URL)</label>
-                <input type="text" id="logo-input" placeholder="https://your-agency-logo.com/logo.png" class="w-full bg-[#18181b] border border-[#3f3f46] rounded-lg px-4 py-3 text-xs focus:outline-none focus:border-white text-white transition-colors">
-            </div>
-            <div class="flex items-center justify-between border-t border-[#27272a] pt-4">
-                <span class="text-xs font-semibold text-[#a1a1aa] uppercase tracking-wide">Inject Custom Watermark</span>
-                <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" id="toggle-custom-wm" class="sr-only peer">
-                    <div class="w-9 h-5 bg-[#27272a] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#71717a] peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-white"></div>
-                </label>
-            </div>
-            <div class="flex items-center justify-between border-t border-[#27272a] pt-4">
-                <span class="text-xs font-semibold text-[#a1a1aa] uppercase tracking-wide">Inject Invisible Watermark (Stealth)</span>
-                <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" id="toggle-invisible-wm" class="sr-only peer">
-                    <div class="w-9 h-5 bg-[#27272a] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#71717a] peer-checked:after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-white"></div>
-                </label>
-            </div>
-            <button onclick="saveSettings()" class="w-full bg-[#27272a] hover:bg-[#3f3f46] text-white font-medium text-xs py-3 rounded-lg transition-colors mt-2">Save Configuration</button>
-        </div>
-
-        <div id="error-msg" class="hidden text-red-400 text-sm text-center mb-4 bg-red-400/10 py-3 rounded-lg border border-red-400/20"></div>
-
-        <div id="result-container" class="hidden mt-8 border-t border-[#27272a] pt-8 animate-[fadeIn_0.5s_ease-out]">
-            
-            <div class="flex items-start gap-4 mb-6">
-                <img id="res-avatar" src="" class="w-12 h-12 rounded-full border border-[#3f3f46] object-cover">
-                <div>
-                    <h3 id="res-author" class="font-semibold text-base text-white"></h3>
-                    <p id="res-desc" class="text-[#a1a1aa] text-sm mt-1 leading-relaxed line-clamp-3"></p>
+        <!-- Supported Apps Grid -->
+        <div class="flex flex-col items-center gap-2.5 pb-6 border-b border-[#27272a]">
+            <span class="text-[10px] text-[#71717a] uppercase tracking-widest font-semibold">Supported Platforms</span>
+            <div class="flex items-center justify-center flex-wrap gap-2 text-[#71717a]">
+                <!-- TikTok -->
+                <div class="p-2 rounded-lg bg-[#09090b] border border-[#27272a] hover:text-white hover:border-[#3f3f46] transition-colors" title="TikTok">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.47 6.27 6.27 0 0 0 1.88-4.47V8.65a8.28 8.28 0 0 0 4.89 1.58V6.82a4.85 4.85 0 0 1-1-.13z"/>
+                    </svg>
+                </div>
+                <!-- YouTube -->
+                <div class="p-2 rounded-lg bg-[#09090b] border border-[#27272a] hover:text-white hover:border-[#3f3f46] transition-colors" title="YouTube">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </div>
+                <!-- Instagram -->
+                <div class="p-2 rounded-lg bg-[#09090b] border border-[#27272a] hover:text-white hover:border-[#3f3f46] transition-colors" title="Instagram">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </div>
+                <!-- Threads -->
+                <div class="p-2 rounded-lg bg-[#09090b] border border-[#27272a] hover:text-white hover:border-[#3f3f46] transition-colors" title="Threads">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.001 2c-5.523 0-10 4.477-10 10 0 5.522 4.477 10 10 10s10-4.478 10-10c0-5.523-4.477-10-10-10zm4.27 12.836c-.414 1.34-1.43 2.37-2.766 2.8-1.758.567-3.79-.044-4.757-1.637l1.242-.873c.636 1.05 2.016 1.464 3.197 1.082.91-.293 1.584-1.026 1.83-1.99.308-1.202.046-2.673-.787-3.447-.798-.742-1.98-.82-2.887-.457-.68.271-1.164.793-1.397 1.474-.297.872-.11 1.764.444 2.327.42.428 1.04.667 1.666.634.623-.033 1.18-.328 1.528-.81l1.218.895c-.567.785-1.488 1.272-2.483 1.325-.99.052-1.99-.323-2.684-1.03-.895-.91-1.206-2.31-.77-3.59.356-1.045 1.127-1.85 2.164-2.262 1.393-.556 3.167-.442 4.385.69 1.258 1.17 1.637 3.23 1.198 4.873z"/>
+                    </svg>
+                </div>
+                <!-- Twitter / X -->
+                <div class="p-2 rounded-lg bg-[#09090b] border border-[#27272a] hover:text-white hover:border-[#3f3f46] transition-colors" title="X (Twitter)">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+                <!-- Facebook -->
+                <div class="p-2 rounded-lg bg-[#09090b] border border-[#27272a] hover:text-white hover:border-[#3f3f46] transition-colors" title="Facebook">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </div>
+                <!-- Pinterest -->
+                <div class="p-2 rounded-lg bg-[#09090b] border border-[#27272a] hover:text-white hover:border-[#3f3f46] transition-colors" title="Pinterest">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.291 1.199-.334 1.357-.057.238-.19.289-.439.175-1.638-.762-2.662-3.156-2.662-5.08 0-4.135 3.004-7.934 8.667-7.934 4.55 0 8.086 3.243 8.086 7.576 0 4.52-2.85 8.16-6.807 8.16-1.329 0-2.579-.691-3.007-1.507l-.818 3.118c-.296 1.139-1.096 2.567-1.633 3.444C9.07 23.834 10.51 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/>
+                    </svg>
+                </div>
+                <!-- Spotify -->
+                <div class="p-2 rounded-lg bg-[#09090b] border border-[#27272a] hover:text-white hover:border-[#3f3f46] transition-colors" title="Spotify">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.502 17.307c-.218.358-.684.473-1.042.254-2.856-1.745-6.452-2.14-10.686-1.173-.41.094-.816-.164-.91-.574-.094-.41.164-.816.574-.91 4.636-1.059 8.608-.614 11.81 1.36.358.219.473.685.254 1.043zm1.47-3.264c-.276.448-.863.593-1.311.318-3.268-2.008-8.25-2.59-12.114-1.417-.504.153-1.036-.135-1.189-.639-.153-.504.135-1.036.639-1.189 4.414-1.339 9.898-.693 13.657 1.616.448.275.593.863.318 1.311zm.126-3.41c-3.918-2.327-10.37-2.541-14.11-1.405-.6.182-1.233-.162-1.415-.762-.182-.6.162-1.233.762-1.415 4.296-1.304 11.413-1.053 15.918 1.621.54.32.716 1.018.396 1.558-.32.54-1.018.716-1.551.396v.007z"/>
+                    </svg>
                 </div>
             </div>
+        </div>
 
+        <!-- Error Container -->
+        <div id="error-msg" class="hidden text-red-400 text-sm text-center my-4 bg-red-400/10 py-3 rounded-lg border border-red-400/20"></div>
+
+        <!-- Result Container -->
+        <div id="result-container" class="hidden mt-8 border-t border-[#27272a] pt-8 animate-[fadeIn_0.5s_ease-out]">
+            
+            <!-- Author Card & Copy Bio / Description -->
+            <div class="flex items-start justify-between gap-4 mb-6 bg-[#09090b] border border-[#27272a] p-4 rounded-xl">
+                <div class="flex items-start gap-3.5 flex-1 min-w-0">
+                    <img id="res-avatar" src="" class="w-12 h-12 rounded-full border border-[#3f3f46] object-cover shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <h3 id="res-author" class="font-semibold text-base text-white truncate"></h3>
+                        <div class="relative mt-1">
+                            <p id="res-desc" class="text-[#a1a1aa] text-sm leading-relaxed line-clamp-2 break-words transition-all duration-200"></p>
+                            <button id="desc-toggle-btn" onclick="toggleDescription()" class="hidden text-xs text-white hover:underline mt-1.5 font-medium transition-colors">
+                                Show more
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Copy Text Button -->
+                <button onclick="copyDescription()" id="copy-btn" title="Copy text" class="shrink-0 p-2.5 rounded-lg bg-[#18181b] border border-[#27272a] text-[#a1a1aa] hover:text-white hover:border-[#3f3f46] transition-all">
+                    <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2" class="hidden">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Analytics Dashboard -->
             <div class="grid grid-cols-2 gap-3 mb-6">
                 <div class="bg-[#09090b] border border-[#27272a] p-4 rounded-xl text-center">
                     <p class="text-[10px] text-[#71717a] uppercase tracking-wider mb-1.5 font-bold">Shadowban Risk</p>
@@ -100,8 +141,10 @@
                 </div>
             </div>
 
+            <!-- Media Output -->
             <div id="media-render-area" class="mb-6"></div>
 
+            <!-- Audio Extraction Button -->
             <a id="btn-audio" href="#" target="_blank" class="hidden w-full text-center bg-[#27272a] hover:bg-[#3f3f46] border border-[#3f3f46] text-white font-medium rounded-xl py-4 text-sm transition-colors mt-4">
                 Download Audio (MP3)
             </a>
@@ -114,41 +157,47 @@
     </footer>
 
     <script>
-        function loadSettings() {
-            const logo = localStorage.getItem('rfqy_logo');
-            const customWm = localStorage.getItem('rfqy_custom_wm') === 'true';
-            const invWm = localStorage.getItem('rfqy_inv_wm') === 'true';
+        let fullDescText = '';
+        let isDescExpanded = false;
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const logo = localStorage.getItem('rfqy_logo');
             if (logo) {
-                document.getElementById('logo-input').value = logo;
                 const clientLogoImg = document.getElementById('client-logo');
                 clientLogoImg.src = logo;
                 clientLogoImg.classList.remove('hidden');
             }
-            
-            document.getElementById('toggle-custom-wm').checked = customWm;
-            document.getElementById('toggle-invisible-wm').checked = invWm;
+        });
+
+        function toggleDescription() {
+            const descEl = document.getElementById('res-desc');
+            const toggleBtn = document.getElementById('desc-toggle-btn');
+            isDescExpanded = !isDescExpanded;
+
+            if (isDescExpanded) {
+                descEl.classList.remove('line-clamp-2');
+                toggleBtn.innerText = 'Show less';
+            } else {
+                descEl.classList.add('line-clamp-2');
+                toggleBtn.innerText = 'Show more';
+            }
         }
 
-        function saveSettings() {
-            const logo = document.getElementById('logo-input').value.trim();
-            const customWm = document.getElementById('toggle-custom-wm').checked;
-            const invWm = document.getElementById('toggle-invisible-wm').checked;
+        function copyDescription() {
+            const textToCopy = fullDescText || document.getElementById('res-desc').innerText;
+            if (!textToCopy) return;
 
-            localStorage.setItem('rfqy_logo', logo);
-            localStorage.setItem('rfqy_custom_wm', customWm);
-            localStorage.setItem('rfqy_inv_wm', invWm);
-
-            alert('System Configuration Updated Successfully.');
-            loadSettings();
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const copyIcon = document.getElementById('copy-icon');
+                const checkIcon = document.getElementById('check-icon');
+                copyIcon.classList.add('hidden');
+                checkIcon.classList.remove('hidden');
+                setTimeout(() => {
+                    copyIcon.classList.remove('hidden');
+                    checkIcon.classList.add('hidden');
+                }, 2000);
+            });
         }
-
-        function toggleSettings() {
-            const panel = document.getElementById('settings-panel');
-            panel.classList.toggle('hidden');
-        }
-
-        document.addEventListener('DOMContentLoaded', loadSettings);
 
         async function fetchMedia() {
             const urlInput = document.getElementById('url-input').value.trim();
@@ -170,8 +219,22 @@
             btn.disabled = true;
 
             try {
-                const isYouTube = urlInput.includes('youtube.com') || urlInput.includes('youtu.be');
-                const endpoint = isYouTube ? '/api/youtube' : '/api/tiktok';
+                // Multi-Platform Routing Engine
+                let endpoint = '/api/tiktok';
+                if (urlInput.includes('youtube.com') || urlInput.includes('youtu.be')) {
+                    endpoint = '/api/youtube';
+                } else if (urlInput.includes('instagram.com')) {
+                    endpoint = '/api/instagram';
+                } else if (urlInput.includes('pinterest.com') || urlInput.includes('pin.it')) {
+                    endpoint = '/api/pinterest';
+                } else if (urlInput.includes('twitter.com') || urlInput.includes('x.com')) {
+                    endpoint = '/api/twitter';
+                } else if (urlInput.includes('threads.net') || urlInput.includes('threads.com')) {
+                    endpoint = '/api/threads';
+                } else if (urlInput.includes('facebook.com') || urlInput.includes('fb.watch')) {
+                    endpoint = '/api/facebook';
+                }
+
                 const response = await fetch(`${endpoint}?url=${encodeURIComponent(urlInput)}`);
                 const data = await response.json();
 
@@ -191,8 +254,24 @@
         function renderResult(data) {
             document.getElementById('res-avatar').src = data.meta.avatar;
             document.getElementById('res-author').innerText = data.meta.author;
-            document.getElementById('res-desc').innerText = data.meta.title;
 
+            // Handle Text Description & Show More Button
+            fullDescText = data.meta.title || '';
+            const descEl = document.getElementById('res-desc');
+            const toggleBtn = document.getElementById('desc-toggle-btn');
+            
+            descEl.innerText = fullDescText;
+            descEl.classList.add('line-clamp-2');
+            isDescExpanded = false;
+
+            if (fullDescText.length > 80) {
+                toggleBtn.classList.remove('hidden');
+                toggleBtn.innerText = 'Show more';
+            } else {
+                toggleBtn.classList.add('hidden');
+            }
+
+            // Audio button handling
             const btnAudio = document.getElementById('btn-audio');
             if (data.media.audio) {
                 btnAudio.href = data.media.audio;
@@ -203,6 +282,7 @@
                 btnAudio.classList.remove('block');
             }
 
+            // Analytics calculation
             const riskLevels = ['Low (Safe)', 'Medium (Warning)', 'High (Shadowbanned)'];
             const riskColors = ['text-green-400', 'text-yellow-400', 'text-red-400'];
             const randRisk = Math.floor(Math.random() * 3);
