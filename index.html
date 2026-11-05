@@ -170,7 +170,9 @@
             btn.disabled = true;
 
             try {
-                const response = await fetch(`/api/tiktok?url=${encodeURIComponent(urlInput)}`);
+                const isYouTube = urlInput.includes('youtube.com') || urlInput.includes('youtu.be');
+                const endpoint = isYouTube ? '/api/youtube' : '/api/tiktok';
+                const response = await fetch(`${endpoint}?url=${encodeURIComponent(urlInput)}`);
                 const data = await response.json();
 
                 if (data.success) {
@@ -191,7 +193,6 @@
             document.getElementById('res-author').innerText = data.meta.author;
             document.getElementById('res-desc').innerText = data.meta.title;
 
-            // Logika Audio Multi-Platform (Sembunyikan jika tidak ada file audio)
             const btnAudio = document.getElementById('btn-audio');
             if (data.media.audio) {
                 btnAudio.href = data.media.audio;
